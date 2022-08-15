@@ -109,32 +109,44 @@ void ExemploWhile()
 
 void ExemploDoWhile()
 {
-	Console.WriteLine("Qual a sua pontuação atual?");
-	int pontuacaojogador = Convert.ToInt32(Console.ReadLine());
-
-	if (pontuacaojogador < 27)
+	string mensagem = "";
+	try
 	{
+		Console.WriteLine("Qual a sua pontuação atual?");
+		int pontuacaojogador = Convert.ToInt32(Console.ReadLine());
 
-		do
+		if (pontuacaojogador < 27)
 		{
-			Console.WriteLine("Jogando!");
-			Console.WriteLine("Você ganhou? (S/N)");
-			string ganhou = Console.ReadLine();
-			if (ganhou == "S")
-			{
-				pontuacaojogador = pontuacaojogador + 3;
-			}
-			else
-			{
-				Console.WriteLine("Infelizmente você está fora do torneio");
-				break;
 
-			}
-		} while (pontuacaojogador < 27);
-		Console.WriteLine("Você já está nas quartas de final!");
+			do
+			{
+				Console.WriteLine("Jogando!");
+				Console.WriteLine("Você ganhou? (S/N)");
+				string ganhou = Console.ReadLine();
+				if (ganhou == "S")
+				{
+					pontuacaojogador = pontuacaojogador + 3;
+				}
+				else
+				{
+					mensagem = ("Infelizmente você está fora do torneio");
+					break;
+
+				}
+			} while (pontuacaojogador < 27);
+			mensagem = ("Você já está nas quartas de final!");
+		}
+		else
+		{
+			mensagem = ("Você já está nas quartas de final!");
+		}
 	}
-	else
+	catch (Exception ex)
 	{
-		Console.WriteLine("Você já está nas quartas de final!");
+		mensagem = ("Aconteceu o seguinte erro: " + ex.Message);
+	}
+	finally
+	{
+		Console.WriteLine(mensagem);
 	}
 }
